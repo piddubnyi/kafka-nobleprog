@@ -1,19 +1,20 @@
 Overview of Distributed Messaging Systems
+
 Alternatives to Kafka
-    - ActiveMQ / RabbitMQ (no real data distribution)
-    - zmq (no disk persistence)
-    - nats (no disk persistence)
-    - apache pulsar
+- ActiveMQ / RabbitMQ (no real data distribution)
+- zmq (no disk persistence)
+- nats (no disk persistence)
+- apache pulsar
 
 https://github.com/tszmytka/benchmark-mq
 
 Use Cases
-    - Messaging
-    - Website Activity Tracking
-    - Metrics
-    - Log Aggregation
-    - Stream Processing
-    - Event Sourcing
+- Messaging
+- Website Activity Tracking
+- Metrics
+- Log Aggregation
+- Stream Processing
+- Event Sourcing
 
 Deployment and startup
  - native
@@ -21,39 +22,46 @@ Deployment and startup
  - k8s
 
 Kafka API
+
 ./bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe *
+
 ./kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic my-topic
 
-Simple Producer
-Producer API
-Simple Consumer
-Consumer API
+- Simple Producer
+- Producer API
+- Simple Consumer
+- Consumer API
 
-Configuration
+*Configuration*
+
 Broker
-    - broker.id
-    - log.dirs
-    - zookeeper.connect 
-    - advertised.listeners
-    - advertised.port
-    - log.retention.bytes
-    - log.retention.hours
+- broker.id
+- log.dirs
+- zookeeper.connect 
+- advertised.listeners
+- advertised.port
+- log.retention.bytes
+- log.retention.hours
+
 Topic
-    - compression.type
+- compression.type
+
 Consumer and Producer Configuration
-    - bootstrap.servers
-    - (Producer) acks
-    - compression.type
-    - (Consumer) group.id group.instance.id
+- bootstrap.servers
+- (Producer) acks
+- compression.type
+- (Consumer) group.id group.instance.id
 
 Design
+
 Persistence
-    All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
-    In effect this just means that it is transferred into the kernel's pagecache.
+- All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
+- In effect this just means that it is transferred into the kernel's pagecache.
+
 Efficiency
-     Data buffering (avoid small IO and frequent flushes) 
-     Reduce sendfile and using the zero-copy
-     !Batch Compression!
+- Data buffering (avoid small IO and frequent flushes)
+- Reduce sendfile and using the zero-copy
+- !Batch Compression!
 
 The Producer
     key is used for partitioning
@@ -86,39 +94,39 @@ Message Delivery Semantics
 ·         Авторризация в разрезе топиков https://kafka.apache.org/documentation/#security_authz
 ·         имплементация ksql и для стримов
 
+- Replication
+- Implementation
+- API Design
+- Network Layer
+- Messages
+- Message format
+- Log
+- Distribution
 
-Replication
-Implementation
-API Design
-Network Layer
-Messages
-Message format
-Log
-Distribution
 Basic Kafka Operations
-Adding and removing topics
-Modifying topics
 
-Graceful shutdown
-Balancing leadership
-Checking consumer position
-Mirroring data between clusters
-Expanding your cluster
-Decommissioning brokers
-Increasing replication factor
+- Adding and removing topics
+- Modifying topics
+- Graceful shutdown
+- Balancing leadership
+- Checking consumer position
+- Mirroring data between clusters
+- Expanding your cluster
+- Decommissioning brokers
+- Increasing replication factor
 
-Other
+
 Datacenters
-Important Server Configs
-Important Client Configs
-Production Server Configs
 
-Monitoring
-ZooKeeper
+- Important Server Configs
+- Important Client Configs
+- Production Server Configs
+- Monitoring
+- ZooKeeper
 
 
-·         как удобно искать по тегам сообщение в топике, было ли или не было
-·         интеграция авро в уже существующее решение
-·         log compacted топики
-·         Tools for troubleshooting
-·         Monitoring Approaches
+- как удобно искать по тегам сообщение в топике, было ли или не было
+- интеграция авро в уже существующее решение
+- log compacted топики
+- Tools for troubleshooting
+- Monitoring Approaches

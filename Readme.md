@@ -21,7 +21,7 @@ Deployment and startup
  - docker
  - k8s
 
-Kafka API
+#Kafka API
 
 ./bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe *
 
@@ -32,7 +32,7 @@ Kafka API
 - Simple Consumer
 - Consumer API
 
-*Configuration*
+#Configuration
 
 Broker
 - broker.id
@@ -52,7 +52,7 @@ Consumer and Producer Configuration
 - compression.type
 - (Consumer) group.id group.instance.id
 
-Design
+#Design
 
 Persistence
 - All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
@@ -64,14 +64,15 @@ Efficiency
 - !Batch Compression!
 
 The Producer
-    key is used for partitioning
-    async sending + batches
-    no producer persistence
+- key is used for partitioning 
+- async sending + batches
+- no producer persistence
+
 The Consumer
-    - pull mode (+blocking)
-    - event mode
-    - consumer position (offset)
-    - Static Membership
+- pull mode (+blocking)
+- event mode
+- consumer position (offset)
+- Static Membership
 
 Message Delivery Semantics
 
@@ -88,11 +89,12 @@ Message Delivery Semantics
 
 
 
-·         Как копровать данные из одного топика на другой на постоянной основе?
-·         Как архивировать данные из одого топика в такой же, но архивный на постоянной основе
-·         Как создать аргегированный топик из нескольких?
-·         Авторризация в разрезе топиков https://kafka.apache.org/documentation/#security_authz
-·         имплементация ksql и для стримов
+- Как копровать данные из одного топика на другой на постоянной основе?
+- Как архивировать данные из одого топика в такой же, но архивный на постоянной основе
+- Как создать аргегированный топик из нескольких?
+- Авторризация в разрезе топиков https://kafka.apache.org/documentation/#security_authz
+- имплементация ksql и для стримов
+
 
 - Replication
 - Implementation

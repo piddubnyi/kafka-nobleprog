@@ -18,6 +18,7 @@ public class SimpleConsumer {
         props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.LongDeserializer");
         props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         KafkaConsumer<Long, String> consumer = new KafkaConsumer<>(props);
+
         consumer.subscribe(Arrays.asList("my-topic"));
         while (true) {
             ConsumerRecords<Long, String> records = consumer.poll(Duration.ofMillis(100));

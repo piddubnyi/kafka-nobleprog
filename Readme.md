@@ -5,6 +5,8 @@ Alternatives to Kafka
     - nats (no disk persistence)
     - apache pulsar
 
+https://github.com/tszmytka/benchmark-mq
+
 Use Cases
     - Messaging
     - Website Activity Tracking
@@ -22,31 +24,66 @@ Kafka API
 ./bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe *
 ./kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic my-topic
 
+Simple Producer
 Producer API
-High Level Consumer API
-Simple Consumer API
-Kafka Hadoop Consumer API
+Simple Consumer
+Consumer API
 
 Configuration
-New Producer
 Broker
-
-
-
+    - broker.id
+    - log.dirs
+    - zookeeper.connect 
+    - advertised.listeners
+    - advertised.port
+    - log.retention.bytes
+    - log.retention.hours
+Topic
+    - compression.type
 Consumer and Producer Configuration
+    - bootstrap.servers
+    - (Producer) acks
+    - compression.type
+    - (Consumer) group.id group.instance.id
+
 Design
-Motivation
 Persistence
+    All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
+    In effect this just means that it is transferred into the kernel's pagecache.
 Efficiency
+     Data buffering (avoid small IO and frequent flushes) 
+     Reduce sendfile and using the zero-copy
+     !Batch Compression!
+
 The Producer
+    key is used for partitioning
+    async sending + batches
+    no producer persistence
 The Consumer
+    - pull mode (+blocking)
+    - event mode
+    - consumer position (offset)
+    - Static Membership
+
 Message Delivery Semantics
+
+    At most once — Messages may be lost but are never redelivered.
+        Consumer read the messages, then save its position in the log, and finally process the messages
+        Consumer process crashes after saving its position but before saving the output
+    At least once — Messages are never lost but may be redelivered.
+        Consumer read the messages, process the messages, and finally save its position
+        Crashes after processing messages but before saving its position
+    Exactly once — each message is delivered once and only once.
+        The consumer's position is stored as a message in a topic, 
+        Write the offset to Kafka in the same transaction as the output topics receiving the processed data. 
+        If the transaction is aborted, the consumer's position will revert
+
 
 
 ·         Как копровать данные из одного топика на другой на постоянной основе?
 ·         Как архивировать данные из одого топика в такой же, но архивный на постоянной основе
 ·         Как создать аргегированный топик из нескольких?
-·         Авторризация в разрезе топиков
+·         Авторризация в разрезе топиков https://kafka.apache.org/documentation/#security_authz
 ·         имплементация ksql и для стримов
 
 

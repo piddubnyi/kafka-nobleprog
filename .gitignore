@@ -1,0 +1,12 @@
+../../storage-system/.idea
+*.iws
+*.iml
+*.ipr
+build
+out
+generated
+/log
+/.gradle
+.env
+*.jtl
+out.log

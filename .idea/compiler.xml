@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.14/bdc3e8dee0b300d3fd9414678fb9ddb42d5e20fb/lombok-1.18.14.jar" />
+        </processorPath>
+        <module name="quote-system.router.test" />
+        <module name="quote-system.cacher.test" />
+        <module name="quote-system.provider-base.test" />
+        <module name="quote-system.config-server-common.test" />
+        <module name="quote-system.common.test" />
+        <module name="quote-system.provider-six-mdf.main" />
+        <module name="quote-system.config-server-common.main" />
+        <module name="quote-system.provider-six-apid.test" />
+        <module name="quote-system.quote-api.test" />
+        <module name="quote-system.provider-base.main" />
+        <module name="quote-system.provider-solvians.test" />
+        <module name="quote-system.subscription-poller.test" />
+        <module name="quote-system.subscription-poller.main" />
+        <module name="quote-system.common.main" />
+        <module name="quote-system.provider-solvians.main" />
+        <module name="quote-system.quote-api.main" />
+        <module name="quote-system.cacher.main" />
+        <module name="quote-system.router.main" />
+        <module name="quote-system.provider-six-apid.main" />
+        <module name="quote-system.provider-six-mdf.test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="15" />
+  </component>
+</project>

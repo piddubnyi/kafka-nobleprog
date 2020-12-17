@@ -3,30 +3,31 @@ plugins {
     id 'java'
 }
 
-
-subprojects {
-    sourceCompatibility = 15
+sourceCompatibility = 15
 
 
-    repositories {
-        mavenCentral()
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    final lombokVersion = '1.18.14'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.4.0')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+
+}
+
+test {
+    useJUnitPlatform() {
+        excludeTags 'IntegrationTest', 'PerformanceTest'
     }
-
-
-    dependencies {
-        final lombokVersion = '1.18.14'
-        compileOnly "org.projectlombok:lombok:$lombokVersion"
-        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
-        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
-
-    }
-
-    test {
-        useJUnitPlatform() {
-            excludeTags 'IntegrationTest', 'PerformanceTest'
-        }
-        testLogging.showStandardStreams = true
-        testLogging.exceptionFormat = 'full'
-    }
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
 }

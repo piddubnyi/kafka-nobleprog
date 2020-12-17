@@ -13,8 +13,14 @@ Use Cases
     - Stream Processing
     - Event Sourcing
 
-Kafka API
+Deployment and startup
+ - native
+ - docker
+ - k8s
 
+Kafka API
+./bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe *
+./kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic my-topic
 
 Producer API
 High Level Consumer API

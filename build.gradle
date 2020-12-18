@@ -15,6 +15,10 @@ plugins {
 
 sourceCompatibility = 11
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
 
 dependencies {
 

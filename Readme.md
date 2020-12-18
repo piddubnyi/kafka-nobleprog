@@ -1,3 +1,7 @@
+Igor Piddubnyi
+github.com/piddubnyi
+igor.piddubnyi@gmail.com
+
 Overview of Distributed Messaging Systems
 
 Alternatives to Kafka

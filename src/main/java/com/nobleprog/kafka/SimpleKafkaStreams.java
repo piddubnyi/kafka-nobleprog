@@ -22,7 +22,7 @@ public class SimpleKafkaStreams {
         @Bean
         public KStream<Long, String> dayAggregation(StreamsBuilder streamsBuilder) {
             final KStream<Long, String> inputStream = streamsBuilder.stream("my-topic");
-            //merge
+            inputStream.merge(streamsBuilder.stream("my-other-topic"));
             inputStream.to("copy-topic");
             return inputStream;
 

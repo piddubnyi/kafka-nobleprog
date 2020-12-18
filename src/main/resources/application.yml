@@ -1,6 +1,27 @@
 spring:
     kafka:
         properties.bootstrap.servers: kafka:9092
-
     application:
         name: copy
+management:
+    endpoints:
+        web:
+            base-path: /
+            exposure.include:
+                - health
+                - info
+                - prometheus
+                - scheduledtasks
+                - refresh
+            path-mapping:
+                prometheus: metrics
+                health: health/live
+                info: health/ready
+            metrics.enable:
+                jvm: true
+                system: false
+                process: false
+                log4j2: true
+                http: true
+server:
+    port: 8080

@@ -7,24 +7,33 @@ sourceCompatibility = 15
 
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 
 dependencies {
-    final lombokVersion = '1.18.14'
-    compileOnly "org.projectlombok:lombok:$lombokVersion"
-    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+//    compile fileTree(dir: 'dependencies', include: ['*.jar'])
 
     implementation platform('org.springframework.boot:spring-boot-dependencies:2.4.0')
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.kafka:spring-kafka'
 
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+
+    implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.apache.kafka:kafka-streams'
 
     implementation 'org.springframework.boot:spring-boot-starter-logging'
     implementation 'org.springframework.boot:spring-boot-starter-json'
+}
 
+task copyDependencies(type: Copy) {
+    from configurations.default
+    into 'dependencies'
 }
 
 test {

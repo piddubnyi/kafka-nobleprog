@@ -22,7 +22,7 @@ public class SimpleProducer {
         Producer<String, String> producer = new KafkaProducer<>(props);
         for (int i = 0; i < 100; i++) {
             producer.send(new ProducerRecord<>(
-                    "my-topic",
+                    "my-other-topic",
                     users.get(ThreadLocalRandom.current().nextInt(users.size())),
                     "{\"update\" : \"" +
                             updates.get(ThreadLocalRandom.current().nextInt(updates.size())) +

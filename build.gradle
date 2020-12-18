@@ -1,15 +1,19 @@
+buildscript {
+    repositories {
+        flatDir { dirs 'plugin-dependencies' }
+    }
+
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.4.0'
+    }
+}
 plugins {
     id 'idea'
     id 'java'
+    id 'org.springframework.boot' version '2.4.0'
 }
 
-sourceCompatibility = 15
-
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
+sourceCompatibility = 11
 
 
 dependencies {

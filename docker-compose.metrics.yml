@@ -1,0 +1,21 @@
+version: "3.6"
+services:
+  prometheus:
+    image: prom/prometheus:v2.17.1
+    network_mode: "host"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./provision/prometheus/etc/prometheus:/etc/prometheus
+
+  grafana:
+    image: grafana/grafana:7.1.5
+    network_mode: "host"
+    ports:
+      - "3000:3000"
+    volumes:
+      - volume-grafana:/var/lib/grafana
+      - ./provision/grafana/etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+
+volumes:
+  volume-grafana:

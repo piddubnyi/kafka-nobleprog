@@ -3,8 +3,9 @@ package com.nobleprog.kafka;
 import io.micrometer.core.instrument.ImmutableTag;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
@@ -30,11 +31,11 @@ public class SimpleKafkaStreams {
 
 
         @Bean
-        public KStream<Long, String> dayAggregation(StreamsBuilder streamsBuilder) {
-            final KStream<Long, String> inputStream = streamsBuilder.stream("my-topic");
-            inputStream.merge(streamsBuilder.stream("my-other-topic"));
-            inputStream.to("copy-topic");
-            return inputStream;
+        public KStream<String, String> dayAggregation(StreamsBuilder streamsBuilder) {
+            final KStream<String, String> inputStream = streamsBuilder.stream("my-topic");
+            final KStream<String, String> mergedStream = inputStream.merge(streamsBuilder.stream("my-other-topic"));
+            mergedStream.to("copy-topic");
+            return mergedStream;
         }
     }
 

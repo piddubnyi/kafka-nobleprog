@@ -15,14 +15,14 @@ public class SimpleConsumer {
         props.setProperty("group.id", "test");
         props.setProperty("enable.auto.commit", "true");
         props.setProperty("auto.commit.interval.ms", "1000");
-        props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.LongDeserializer");
+        props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        KafkaConsumer<Long, String> consumer = new KafkaConsumer<>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
-        consumer.subscribe(Arrays.asList("my-topic"));
+        consumer.subscribe(Arrays.asList("copy-topic"));
         while (true) {
-            ConsumerRecords<Long, String> records = consumer.poll(Duration.ofMillis(100));
-            for (ConsumerRecord<Long, String> record : records)
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records)
                 System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
         }
     }

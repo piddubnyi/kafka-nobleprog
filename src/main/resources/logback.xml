@@ -2,4 +2,25 @@
 <configuration>
     <contextName>main</contextName>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+<!--    Logging example-->
+<!--    <appender name="otp-elk" class="biz.paluch.logging.gelf.logback.GelfLogbackAppender">-->
+<!--        <host>udp:graylog-gelf.devops</host>-->
+<!--        <port>12201</port>-->
+<!--        <version>1.1</version>-->
+<!--        <facility>quote-system</facility>-->
+<!--        <extractStackTrace>true</extractStackTrace>-->
+<!--        <filterStackTrace>true</filterStackTrace>-->
+<!--        <mdcProfiling>true</mdcProfiling>-->
+<!--        <additionalFields>component=${applicationName},facet=main,thread=%thread</additionalFields>-->
+<!--        <includeFullMdc>true</includeFullMdc>-->
+<!--    </appender>-->
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="main"/>-->
+<!--    </root>-->
+
+<!--    <logger name="org.apache.kafka.*" level="info" additivity="false">-->
+<!--        <appender-ref ref="otp-elk"/>-->
+<!--    </logger>-->
 </configuration>

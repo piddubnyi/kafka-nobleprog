@@ -4,19 +4,3 @@ spring:
         properties.group.id: test
     application:
         name: copy
-management:
-    endpoints:
-        web:
-            base-path: /
-            exposure.include:
-                - prometheus
-            path-mapping:
-                prometheus: metrics
-            metrics.enable:
-                jvm: true
-                system: false
-                process: false
-                log4j2: false
-                http: false
-server:
-    port: 8181

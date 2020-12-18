@@ -15,15 +15,18 @@ public class SimpleConsumer {
         props.setProperty("group.id", "test");
         props.setProperty("enable.auto.commit", "true");
         props.setProperty("auto.commit.interval.ms", "1000");
+        props.setProperty("schema.registry.url", "http://localhost:8081");
         props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+        props.setProperty("value.deserializer", "io.confluent.kafka.serializers.KafkaAvroDeserializer");
+        KafkaConsumer<String, User> consumer = new KafkaConsumer<>(props);
 
-        consumer.subscribe(Arrays.asList("copy-topic"));
+        consumer.subscribe(Arrays.asList("adult-users"));
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-            for (ConsumerRecord<String, String> record : records)
-                System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+            ConsumerRecords<String, User> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, User> record : records) {
+                final User user = record.value();
+                System.out.printf("key = %s, value = %s%s", record.offset(), record.key(), user.getName()+user.getAge());
+            }
         }
     }
 }
